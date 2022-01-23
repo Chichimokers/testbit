@@ -3,21 +3,32 @@ from os import path
 
 import bs4
 
+
 from bs4.element import ProcessingInstruction
+
 from config import username,password,nube,arroba
+
 import requests
 
+
 import parser 
+
 import time
+
 import sre_parse 
+
 from urllib import parse
+
 from requests_toolbelt import MultipartEncoder ,MultipartEncoderMonitor
 
 from requests.sessions import Session
 
 import os
+
 from datetime import datetime
+
 from telegram import update
+
 from telegram.message import Message
 
 from Filesize import CheckSize
@@ -333,7 +344,7 @@ class NubApi():
               print("❌❌Error fatal al leer el json❌❌")
 
               mensajeuno.delete()
-              
+
               time.sleep(2)
 
               return "error"

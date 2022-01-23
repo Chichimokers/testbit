@@ -1,8 +1,11 @@
 ﻿from config import LoadConfig ,APIBOT
+
 from datetime import time
+
 import urllib
 
 import telegram
+
 from telegram.bot import Bot
 
 from TareaFinalizable import StoppableThread
@@ -32,8 +35,7 @@ from telegram.ext.filters import Filters, MessageFilter
 from telegram import ChatAction, chat, message
 
 from telegram.update import Update
-from dowlandFile import Contexton
-from dowlandFileMultipart import Contextito
+
 from todus3.client import ToDusClient
 
 import shutil
@@ -52,10 +54,7 @@ from os.path import basename
 
 from ChekAllows import EstasPermitiado
 
-
 from FuncionesBot import DisallowUser ,ProcesartxtdeYoutube,DescargarVideodeYoutube,Agregarusuario,ProcesarDescargadeunFichero,DowlandFromTxt
-
-from nubapi import Contexto
 
 Entrada_de_la_Descaraga = 0 
 
