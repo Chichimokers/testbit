@@ -235,7 +235,8 @@ def main():
         print("Cargando Configuracion")
 
         print("Listening.....")  
-    
+        print(APIBOT)
+   
         update = Updater(token=APIBOT,use_context=True)
 
         despachador =  update.dispatcher
