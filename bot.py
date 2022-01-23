@@ -1,5 +1,4 @@
-﻿from config import LoadConfig ,apibot
-
+﻿from config import Config
 from datetime import time
 
 import urllib
@@ -230,14 +229,14 @@ def DowlandYoutubeVideo(update,context):
 
 def main():
 
-        LoadConfig();
 
+        configuracion = Config()
         print("Cargando Configuracion")
 
         print("Listening.....")  
-        print(apibot)
+
    
-        update = Updater(token=apibot,use_context=True)
+        update = Updater(token=configuracion.apibot,use_context=True)
 
         despachador =  update.dispatcher
         

@@ -1,11 +1,11 @@
 import os 
 from cleanname import CleanName
-from config import arroba
+from config import Config
 paths = os.path.dirname(os.path.abspath(__file__))
 
 def EstasPermitiado(update):
-
-    if("@"+update.message.chat.username == arroba):
+    configuracion = Config()
+    if("@"+update.message.chat.username == configuracion.arroba):
         return True
 
     else:

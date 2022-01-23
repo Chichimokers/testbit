@@ -1,48 +1,41 @@
 import json
 
-global arroba
-arroba=""
+class Config():
 
-global username
-username=""
+    def __init__(self) -> None:
+        self.username=""
+        self.password =""
+        self.arroba=""
+        self.nube=""
+        self.apibot=""
+        self.LoadConfig()
+        pass    
+    def LoadConfig(self):
 
-global apibot
-
-apibot =""
-
-global password
-password=""
-
-global nube
-
-nube=""
-
-def LoadConfig():
-
-    Loadjson()
+      self.Loadjson()
 
     pass
 
-def Loadjson():
+    def Loadjson(self):
 
-    file  = open("/app/config.json","r")
+      file  = open("/app/config.json","r")
 
-    jsons = json.loads(file.read())
+      jsons = json.loads(file.read())
 
-    arroba= jsons["arroba"]
+      self.arroba= jsons["arroba"]
 
-    username=jsons["username"]
+      self.username=jsons["username"]
 
-    password=jsons["password"]
+      self.password=jsons["password"]
 
-    nube=jsons["nube"]
+      self.nube=jsons["nube"]
 
-    apibot=jsons["API"]
+      self.apibot=jsons["API"]
 
-    print(arroba)
-    print(username)
-    print(password)
-    print(nube)
-    print(apibot)
+      print(self.arroba)
+      print(self.username)
+      print(self.password)
+      print(self.nube)
+      print(self.apibot)
 
-    pass
+      pass

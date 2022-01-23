@@ -6,8 +6,7 @@ import bs4
 
 from bs4.element import ProcessingInstruction
 
-from config import username,password,nube,arroba
-
+from config import Config
 import requests
 
 
@@ -46,8 +45,9 @@ class NubApi():
         self.Session = requests.Session()
 
         self.Session.headers.update({"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0"})
-
-        self.Moodle = "https://"+nube+"/"
+        self.configuracion = Config()
+        
+        self.Moodle = "https://"+self.configuracion.nube+"/"
 
         self.urls = self.Moodle+"login/index.php"
 
@@ -55,9 +55,11 @@ class NubApi():
 
         self.Autor = "Alguien Escondido"
 
-        self.username = username
+        self.username = self.configuracion.username
 
-        self.password = password
+        self.password = self.configuracion.password
+
+       
         
         self.InitialNegotiation()
 
