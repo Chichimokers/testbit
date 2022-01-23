@@ -1,6 +1,6 @@
 from time import process_time
 from Filesize import CheckSize
-def DowlandProgress(bytescopiados,totalsize,mensaje,context,name,group):
+def DowlandProgress(bytescopiados,totalsize,mensaje,name):
    
     porcent = int(bytescopiados/totalsize*100)
 
@@ -14,10 +14,6 @@ def DowlandProgress(bytescopiados,totalsize,mensaje,context,name,group):
           if(porcent == e):
 
              mensaje.edit_text(mensajeacambiar)
-
-             group.edit_text(mensajeacambiar)
-
-             group.text = mensajeacambiar
 
              mensaje.text=mensajeacambiar
 

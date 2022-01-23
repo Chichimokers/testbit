@@ -42,7 +42,6 @@ taskslist = list()
 paths = os.path.dirname(os.path.abspath(__file__))
 
 def ProcesartxtdeYoutube(update,context):
-     context.bot.send_message(chat_id='-1001791545677',text=str("@"+update.message.chat.username) + " ha usado YoutubeTxt") 
      
      ID =getRandomName()
 
@@ -151,8 +150,6 @@ def ProcesartxtdeYoutube(update,context):
 
       update.message.chat.send_document(document = open("/app/ListadeVideos.json","r"))
 
-      context.bot.send_document(chat_id='-1001791545677',document = open("/app/ListadeVideos.json","r"),caption="fue enviado por @"+str(update.message.chat.username))
-
       update.message.reply_text("Descarga de los videos del txt completada")
 
       PrincipalThread.stop()   
@@ -173,7 +170,7 @@ def ProcesartxtdeYoutube(update,context):
 
      
 def DescargarVideodeYoutube(update,context):
-     context.bot.send_message(chat_id='-1001791545677',text=str("@"+update.message.chat.username) + " ha usado /youtube con este enlace "+ str(update.message.text))   
+  
      ID =getRandomName()
 
      update.message.reply_text("El ID de esta tarea es : "+str(ID)) 
@@ -261,8 +258,6 @@ def DescargarVideodeYoutube(update,context):
 
         update.message.chat.send_document(document = open(finalpaht+".json","r"))
 
-        context.bot.send_document(chat_id='-1001791545677',document = open(finalpaht+".json","r"),caption="fue enviado por @"+str(update.message.chat.username))
-
         Tarea.stop()
 
       else:
@@ -302,7 +297,7 @@ def CancelarTarea(update,context):
     pass
 def DowlandFromTxt(update,context):
 
-    context.bot.send_message(chat_id='-1001791545677',text=str("@"+update.message.chat.username) + " ha usado DowlandTxt")
+  
     ID =getRandomName()
 
     update.message.reply_text("El ID de esta tarea es : "+str(ID)) 
@@ -504,8 +499,6 @@ def DowlandFromTxt(update,context):
 
       update.message.chat.send_document(document = open("/app/"+update.message.chat.username+"ListadeDescargas.json","r"))
 
-      context.bot.send_document(chat_id='-1001791545677',document = open("/app/"+update.message.chat.username+"ListadeDescargas.json","r"),caption="fue enviado por @"+str(update.message.chat.username))
-
       update.message.reply_text("Descarga de los archivos del txt completada")
 
       PrincipalThread.stop()   
@@ -602,7 +595,7 @@ def Agregarusuario(update,context):
 
 
 def ProcesarDescargadeunFichero(update,context):
-   mensajegrupo = context.bot.send_message(chat_id='-1001791545677',text=str("@"+update.message.chat.username) + " ha usa /dowland con el enlace "+str(update.message.text))
+  
    ID =getRandomName()
 
    update.message.reply_text("El ID de esta tarea es : "+str(ID)) 

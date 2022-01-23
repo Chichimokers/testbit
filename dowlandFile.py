@@ -30,15 +30,9 @@ from telegram.update import Update
 from Filesize import CheckSize
 
 from urllib import parse
+
 from datetime import datetime
-def Contexton(context):
 
-    global contexto
-
-    contexto = context
-
-
-    pass
 paths = os.path.dirname(os.path.abspath(__file__))
 
 def dowland(url,update,cookies):
@@ -98,8 +92,6 @@ def dowland(url,update,cookies):
          
          copaidos = 0
 
-         grupouploading = contexto.bot.send_message(chat_id='-1001791545677',text=str("Se esta descargando "+str(completename) +" Downloading 0%"))
-
          for bytescop in r.iter_content(chunk_size=4096*1024):
 
             if bytescop:
@@ -114,9 +106,10 @@ def dowland(url,update,cookies):
                print(completename)
        
 
-               DowlandProgress(bytescopiados=copaidos,totalsize=int(r.headers.get("Content-Length")),group=grupouploading,mensaje=hola,context=contexto,name=completename)
+               DowlandProgress(bytescopiados=copaidos,totalsize=int(r.headers.get("Content-Length")),mensaje=hola,name=completename)
 
                sys.stdout.flush()    
+
          hola.edit_text("Descarga Completada :)")        
 
          return completename
@@ -130,9 +123,9 @@ def dowland(url,update,cookies):
       update.message.chat.send_message(completename)
 
       hola =  update.message.chat.send_message("Descarga Inciada")
-      grupouploading = contexto.bot.send_message(chat_id='-1001791545677',text=str("Se esta descargando "+str(completename) +" Downloading 0%"))
 
       print(hola)
+
       for bytescop in r.iter_content(chunk_size=4096*1024):
 
         if bytescop:
@@ -145,9 +138,7 @@ def dowland(url,update,cookies):
      
             print("Descargando....."+str(CheckSize(bytescopiados))+" Total "+ str(CheckSize(totasize)))    
 
-
-
-            DowlandProgress(bytescopiados=bytescopiados,totalsize=int(r.headers.get("Content-Length")),group=grupouploading,mensaje=hola,context=contexto,name=completename)
+            DowlandProgress(bytescopiados=bytescopiados,totalsize=int(r.headers.get("Content-Length")),mensaje=hola,name=completename)
 
             sys.stdout.flush()
 

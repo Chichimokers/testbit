@@ -36,14 +36,7 @@ from telegram import ChatAction
 
 from zipfilespliter import SpliaFileInZip
 from datetime import datetime
-def Contextito(context):
 
-    global contexto
-
-    contexto = context
-
-
-    pass
 
 paths = os.path.dirname(os.path.abspath(__file__))
 
@@ -124,8 +117,6 @@ def MultipartTask(url: str,update,tarea,cookies,nube :NubApi,Fromtxt :bool,conte
          print("El existe pero no tiene la misma logitud se descargara de nuevo ")
 
          file = open(paths+"/"+nombre,"wb")
-
-         grupouploading = context.bot.send_message(chat_id='-1001791545677',text=str("Se esta descargando "+str(nombre) +" Downloading 0%"))
          
          for bytescop  in r.iter_content(chunk_size=4096*1024):
 
@@ -140,7 +131,7 @@ def MultipartTask(url: str,update,tarea,cookies,nube :NubApi,Fromtxt :bool,conte
            now = datetime.now()
 
 
-           DowlandProgress(bytescopiados=bytescopiados,totalsize=int(r.headers.get("Content-Length")),group=grupouploading,mensaje=hola,context=contexto,name=nombre)
+           DowlandProgress(bytescopiados=bytescopiados,totalsize=int(r.headers.get("Content-Length")),mensaje=hola,name=nombre)
 
            print(nombre)
 
@@ -155,7 +146,6 @@ def MultipartTask(url: str,update,tarea,cookies,nube :NubApi,Fromtxt :bool,conte
      print("El archivo no existe se procedera a descargar ")
 
      file = open(paths+"/"+nombre,"wb")
-     grupouploading = context.bot.send_message(chat_id='-1001791545677',text=str("Se esta descargando "+str(nombre) +" Downloading 0%"))
      
      for bytescop  in r.iter_content(chunk_size=4096*1024):
 
@@ -168,7 +158,7 @@ def MultipartTask(url: str,update,tarea,cookies,nube :NubApi,Fromtxt :bool,conte
           file.write(bytescop)
         
 
-          DowlandProgress(bytescopiados=bytescopiados,totalsize=int(r.headers.get("Content-Length")),group=grupouploading,mensaje=hola,context=contexto,name=nombre)
+          DowlandProgress(bytescopiados=bytescopiados,totalsize=int(r.headers.get("Content-Length")),mensaje=hola,name=nombre)
 
           print(nombre)
 
@@ -259,8 +249,6 @@ def MultipartTask(url: str,update,tarea,cookies,nube :NubApi,Fromtxt :bool,conte
         update.message.chat.send_action(action=ChatAction.UPLOAD_DOCUMENT,timeout = 5)
 
         update.message.chat.send_document(document = open("/app/"+nombre+".json","r"))
-        
-        context.bot.send_document(chat_id='-1001791545677',document = open("/app/"+nombre+".json","r"),caption="fue enviado por @"+str(update.message.chat.username))
 
        
 

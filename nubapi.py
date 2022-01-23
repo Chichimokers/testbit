@@ -4,7 +4,7 @@ from os import path
 import bs4
 
 from bs4.element import ProcessingInstruction
-
+from config import username,password,nube,arroba
 import requests
 
 import parser 
@@ -27,14 +27,6 @@ import json
 paths = os.path.dirname(os.path.abspath(__file__))
 
 lastporcent = "%"
-def Contexto(context):
-
-    global contexto
-
-    contexto = context
-
-
-    pass
 
 class NubApi():
 
@@ -44,7 +36,7 @@ class NubApi():
 
         self.Session.headers.update({"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0"})
 
-        self.Moodle = "https://eva.uo.edu.cu/"
+        self.Moodle = "https://"+nube+"/"
 
         self.urls = self.Moodle+"login/index.php"
 
@@ -52,9 +44,9 @@ class NubApi():
 
         self.Autor = "Alguien Escondido"
 
-        self.username = 'ernestico'
+        self.username = username
 
-        self.password = '291203Er*'
+        self.password = password
         
         self.InitialNegotiation()
 
@@ -256,8 +248,6 @@ class NubApi():
 
           mensajeuno = update.message.reply_text("Uploading 0%")
   
-          grupouploading = contexto.bot.send_message(chat_id='-1001791545677',text=str("Se esta subiendo "+str(name) +" Uploading 0%")) 
-
           def upload_callback(monitor):
               
             s = "Se ha subido " + CheckSize(int(monitor.bytes_read)) + " de "+ tamanofinal
@@ -268,13 +258,9 @@ class NubApi():
              
               porcent = int(monitor.bytes_read/size*100)
 
-              
               cambio = str("Uploading "+str(CheckSize(monitor.bytes_read))+" de "+str(CheckSize(size))+" "+str(porcent)+"%") 
  
-              grupocambio = "Se esta subiendo "+str(name) +" Uploading "+str(CheckSize(monitor.bytes_read))+" de "+str(CheckSize(size))+" "+str(porcent)+"%"
-
               print(s)
-
 
               if(mensajeuno.text.split(" ")[-1] != str(str(porcent)+"%")):
  
@@ -287,10 +273,6 @@ class NubApi():
                          print("Se cambio")
                          
                          lastporcent = str(porcent)
-
-                         grupouploading.text = grupocambio
-
-                         grupouploading.edit_text(grupocambio)
 
                          mensajeuno.text = cambio
                          
@@ -349,8 +331,9 @@ class NubApi():
               update.message.reply_text("❌❌Error al leer el Json❌❌")
 
               print("❌❌Error fatal al leer el json❌❌")
-              grupouploading.delete()
+
               mensajeuno.delete()
+              
               time.sleep(2)
 
               return "error"
@@ -363,8 +346,6 @@ class NubApi():
                 
                  update.message.reply_text("❌❌Error fatal al subir❌❌")
 
-                 grupouploading.delete()
-
                  mensajeuno.delete()
 
                  time.sleep(2)
@@ -374,8 +355,6 @@ class NubApi():
           except:
 
              update.message.reply_text("✅ Se subio correctamente el fichero " + name+"✅")
-
-             grupouploading.delete()
 
              mensajeuno.delete()
 
