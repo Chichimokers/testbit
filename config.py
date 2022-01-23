@@ -4,7 +4,7 @@ arroba=""
 
 username=""
 
-APIBOT=""
+apibot=""
 
 password=""
 
@@ -30,6 +30,6 @@ def Loadjson():
 
     nube=jsons["nube"]
 
-    APIBOT=jsons["API"]
+    apibot=jsons["API"]
 
     pass

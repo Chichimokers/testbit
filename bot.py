@@ -1,4 +1,4 @@
-﻿from config import LoadConfig ,APIBOT
+﻿from config import LoadConfig ,apibot
 
 from datetime import time
 
@@ -235,9 +235,9 @@ def main():
         print("Cargando Configuracion")
 
         print("Listening.....")  
-        print(APIBOT)
+        print(apibot)
    
-        update = Updater(token=APIBOT,use_context=True)
+        update = Updater(token=apibot,use_context=True)
 
         despachador =  update.dispatcher
         
