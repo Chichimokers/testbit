@@ -1,7 +1,5 @@
 import json
 
-from requests import api
-
 global arroba
 arroba=""
 
