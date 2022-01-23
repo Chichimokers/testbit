@@ -1,4 +1,5 @@
 import json
+
 arroba=""
 
 username=""
@@ -17,7 +18,9 @@ def LoadConfig():
 
 def Loadjson():
 
-    jsons = json.loads(json)
+    file  = open("/app/config.json","r")
+
+    jsons = json.loads(file.read())
 
     arroba= jsons["arroba"]
 
