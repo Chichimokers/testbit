@@ -227,7 +227,7 @@ class NubApi():
 
         desc=''
 
-        evidenceurl = self.path + 'admin/tool/lp/user_evidence_edit.php?userid=' + self.userid
+        evidenceurl = self.Moodle + 'admin/tool/lp/user_evidence_edit.php?userid=' + self.userid
 
         respuesta= self.Session.get(evidenceurl)
 
