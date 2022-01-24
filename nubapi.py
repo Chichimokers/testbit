@@ -370,7 +370,8 @@ class NubApi():
             'maxbytes':(None,query['maxbytes']),
             'areamaxbytes':(None,query['areamaxbytes']),
             'ctx_id':(None,query['ctx_id']),
-            'savepath':(None,'/')}
+            'savepath':(None,'/'),
+            'repo_upload_file':(None,iles)}
 
         post_file_url = self.Moodle+'repository/repository_ajax.php?action=upload'
 
@@ -428,7 +429,7 @@ class NubApi():
         pass
 
     def UploadsFile(self,pathfile :str,update):
-        
+
 
           name = pathfile.split("/")[-1]
 
