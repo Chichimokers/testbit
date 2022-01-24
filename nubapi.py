@@ -356,22 +356,23 @@ class NubApi():
 
         itempostid = query['itemid']
 
-        upload_data = {
-            'title':(None,''),
-            'author':(None,self.Autor),
-            'license':(None,'allrightsreserved'),
-            'itemid':(None,query['itemid']),
-            'repo_id':(None,4),
-            'p':(None,''),
-            'page':(None,''),
-            'env':(None,query['env']),
-            'sesskey':(None,sesskey),
-            'client_id':(None,client_id),
-            'maxbytes':(None,query['maxbytes']),
-            'areamaxbytes':(None,query['areamaxbytes']),
-            'ctx_id':(None,query['ctx_id']),
-            'savepath':(None,'/'),
-            'repo_upload_file':(None,iles)}
+        upload_data = { 'title':' ',
+        'author':self.Autor,
+        'license':'allrightsreserved',
+        'itemid':query['itemid'],
+        'repo_id':4,
+        'p':'',
+        'page':'',
+        'env':query['env'],
+        'sesskey':sesskey,
+        'client_id':client_id,
+        'maxbytes':query['maxbytes'],
+        'areamaxbytes':query['areamaxbytes'],
+        'ctx_id':query['ctx_id'],
+        'savepath':'/',
+        'repo_upload_file': (name,open(pathfile,'rb'))}
+
+        print(upload_data)
 
         post_file_url = self.Moodle+'repository/repository_ajax.php?action=upload'
 
