@@ -153,6 +153,18 @@ class NubApi():
            self.Login()
 
         pass
+
+    def ObtenerToken(self):
+
+        valores = {'username':self.username,'password':self.password,'service':'moodle_mobile_app'}
+
+        respuesta = requests.post(url=self.Moodle+"login/token.php",params=valores,verify=False)
+
+        print(respuesta.text)
+        
+        s = json.loads(respuesta.text)
+
+        return s["token"]
    
     def DowlandFile(self,url):
 
@@ -179,6 +191,14 @@ class NubApi():
                 print("Se han copiado "+CheckSize(bytescopiados))
 
         f.close()
+        
+    def getDirectUrl(self,url):
+
+        tokens = str(url).split('/')
+
+        direct = self.Moodle+'webservice/pluginfile.php/'+tokens[4]+'/user/private/'+tokens[-1]+'?token='+self.ObtenerToken()
+
+        return direct
 
     def UploadFile(self,pathfile :str,update):
 
@@ -335,6 +355,7 @@ class NubApi():
           print("###########Request Content#############")
 
           print(respuesta.text)
+
           try:
 
              er = json.loads(respuesta.text)
@@ -368,6 +389,12 @@ class NubApi():
           except:
 
              update.message.reply_text("✅ Se subio correctamente el fichero " + name+"✅")
+
+             cargandojson = json.loads(respuesta.text)
+
+             linkdirecto = self.getDirectUrl(cargandojson["url"])
+             
+             cargandojson["url"]=linkdirecto
 
              mensajeuno.delete()
 
