@@ -356,7 +356,7 @@ class NubApi():
 
         itempostid = query['itemid']
 
-        upload_data = { 'title':' ',
+        upload_data = { 'title':'',
         'author':self.Autor,
         'license':'allrightsreserved',
         'itemid':query['itemid'],
@@ -420,10 +420,12 @@ class NubApi():
         e = MultipartEncoder(fields=upload_data)
 
         m = MultipartEncoderMonitor(e, upload_callback)
-
+          
         headers = {"Content-Type": m.content_type}
 
-        resp2 = self.Session.post(post_file_url,data=m,headers=headers)
+        respuesta = ""
+
+        respuesta = requests.post(self.Moodle+"/repository/repository_ajax.php?action=upload",cookies=self.Session.cookies,data=m,headers=headers)
 
         self.SalverEvidencia(evidence=evidenciaid)
 
@@ -556,6 +558,7 @@ class NubApi():
           e = MultipartEncoder(fields=values)
 
           m = MultipartEncoderMonitor(e, upload_callback)
+
           headers = {"Content-Type": m.content_type}
 
           respuesta = ""
