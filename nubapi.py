@@ -426,7 +426,7 @@ class NubApi():
 
              jsonfinal = {"url":cargandojson["url"],"id":cargandojson[id],"file":cargandojson["file"]}
 
-             asd= encoder.encode(jsonfinal)
+             asd= encoder.encode(str(jsonfinal))
 
              print(asd)
 

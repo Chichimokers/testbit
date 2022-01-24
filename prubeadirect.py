@@ -5,7 +5,6 @@ cargadp = json.loads(jsons)
 print(cargadp["url"])
 cargadp["url"]="https://cursos.uo.edu.cu/draftfile.php/16602/user/draft/33018802/"
 
+jsonfinal = {"url":"https://cursos.uo.edu.cu/draftfile.php/16602/user/draft/33018802/","id":"s","file":"aa"}
 
-print(asd)
-
-a =json.loads(asd)
+print(json.encoder.JSONEncoder().encode(jsonfinal))
