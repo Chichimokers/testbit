@@ -299,7 +299,7 @@ class NubApi():
         ret = html[index:(index+max)]
         return str(ret).replace('client_id":"','')
 
-    def UploadFile(self,pathfile :str,update):
+    def UploadsFile(self,pathfile :str,update):
 
         name = pathfile.split("/")[-1]
 
@@ -431,7 +431,7 @@ class NubApi():
 
         pass
 
-    def UploadsFile(self,pathfile :str,update):
+    def UploadFile(self,pathfile :str,update):
 
 
           name = pathfile.split("/")[-1]
