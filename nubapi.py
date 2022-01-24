@@ -151,7 +151,7 @@ class NubApi():
           er = bs4.BeautifulSoup(respuesta.text,'html.parser')
  
 
-          self.userid = er.find('div',{'id':'nav-notification-popover-container'})['data-userid']
+          self.userid = soup.find('div',{'id':'nav-notification-popover-container'})['data-userid']
 
            #  for a in self.Session.cookies:
 
@@ -303,7 +303,7 @@ class NubApi():
         name = pathfile.split("/")[-1]
 
         evidenciaid = self.CrearEvidencia(name=name)
-        
+
         if(evidenciaid == "error"):
 
             return "error"
