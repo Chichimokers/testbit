@@ -109,8 +109,7 @@ def dowland(url,update,cookies):
 
                print(completename)
        
-
-               DowlandProgress(bytescopiados=copaidos,totalsize=int(r.headers.get("Content-Length")),mensaje=hola,name=completename)
+               DowlandProgress(bytescopiados=copaidos,totalsize=int(0),mensaje=hola,name=completename)
 
                sys.stdout.flush()    
 
