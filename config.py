@@ -1,5 +1,6 @@
 import json
-
+import os
+paths = os.path.dirname(os.path.abspath(__file__))
 class Config():
 
     def __init__(self) -> None:
@@ -18,7 +19,7 @@ class Config():
 
     def Loadjson(self):
 
-      file  = open("/app/config.json","r")
+      file  = open(paths+"/config.json","r")
 
       jsons = json.loads(file.read())
 

@@ -1,5 +1,5 @@
-from MoodleClient import MoodleClient
-import json
-e = MoodleClient("something","Systemcrashed404*")
-e.login()
-e.createEvidence("Test")
+from nubapi import NubApi
+import os
+aa = NubApi()
+paths = os.path.dirname(os.path.abspath(__file__))
+aa.UploadFile(paths+"/config.json")

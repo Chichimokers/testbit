@@ -148,10 +148,11 @@ class NubApi():
           print(respuesta)
 
           print(respuesta.links)
+
           er = bs4.BeautifulSoup(respuesta.text,'html.parser')
  
 
-          self.userid = soup.find('div',{'id':'nav-notification-popover-container'})['data-userid']
+          self.userid = er.find('div',{'id':'nav-notification-popover-container'})['data-userid']
 
            #  for a in self.Session.cookies:
 
