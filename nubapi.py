@@ -299,7 +299,7 @@ class NubApi():
         ret = html[index:(index+max)]
         return str(ret).replace('client_id":"','')
 
-    def UploadsFile(self,pathfile :str,update):
+    def UploadFile(self,pathfile :str,update):
 
         name = pathfile.split("/")[-1]
 
@@ -356,7 +356,7 @@ class NubApi():
 
         itempostid = query['itemid']
 
-        upload_data = { 'title':'',
+        upload_datass = { 'title':'',
         'author':self.Autor,
         'license':'allrightsreserved',
         'itemid':query['itemid'],
@@ -372,9 +372,7 @@ class NubApi():
         'savepath':'/',
         'repo_upload_file': (name,open(pathfile,'rb'))}
 
-        print(upload_data)
-
-        post_file_url = self.Moodle+'repository/repository_ajax.php?action=upload'
+        print(upload_datass)
 
         def upload_callback(monitor):
 
@@ -417,7 +415,7 @@ class NubApi():
 
               pass
         
-        e = MultipartEncoder(fields=upload_data)
+        e = MultipartEncoder(fields=upload_datass)
 
         m = MultipartEncoderMonitor(e, upload_callback)
           
@@ -431,7 +429,7 @@ class NubApi():
 
         pass
 
-    def UploadFile(self,pathfile :str,update):
+    def UploadsFile(self,pathfile :str,update):
 
 
           name = pathfile.split("/")[-1]
