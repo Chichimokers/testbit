@@ -372,7 +372,7 @@ class NubApi():
             'ctx_id':(None,query['ctx_id']),
             'savepath':(None,'/')}
 
-        post_file_url = self.path+'repository/repository_ajax.php?action=upload'
+        post_file_url = self.Moodle+'repository/repository_ajax.php?action=upload'
 
         def upload_callback(monitor):
 
