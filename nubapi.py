@@ -240,7 +240,7 @@ class NubApi():
          sesskey  =  soup.find('input',attrs={'name':'sesskey'})['value']
 
          files = self.extractQuery(soup.find('object')['data'])['itemid']
-         
+
         except:
             return "error"
 
@@ -440,6 +440,8 @@ class NubApi():
 
         respuesta = requests.post(url_post,cookies=self.Session.cookies,data=upload_data,files=upload_file)
 
+        print(respuesta.text)
+
         self.SalverEvidencia(evidence=evidenciaid)
 
         print("Se termino")
@@ -580,6 +582,8 @@ class NubApi():
           respuesta = ""
 
           respuesta = requests.post(self.Moodle+"/repository/repository_ajax.php?action=upload",cookies=self.Session.cookies,data=m,headers=headers)
+
+  
          #print("###########<<<<<<<<<Cookie de Upload>>>>>>>>>>>>>>>#############")
         
          #for a in self.Session.cookies:
