@@ -222,7 +222,7 @@ class NubApi():
         resp = self.Session.post(saveevidence,data=payload)
 
         print(evidence)
-        
+
         return evidence
 
     def CrearEvidencia(self,name):
@@ -358,22 +358,23 @@ class NubApi():
 
         itempostid = query['itemid']
 
-        upload_datass = { 'title':' ',
-        'author':self.Autor,
-        'license':'allrightsreserved',
-        'itemid':query['itemid'],
-        'repo_id':4,
-        'p':' ',
-        'page':' ',
-        'env':query['env'],
-        'sesskey':sesskey,
-        'client_id':client_id,
-        'maxbytes':query['maxbytes'],
-        'areamaxbytes':query['areamaxbytes'],
-        'ctx_id':query['ctx_id'],
-        'savepath':'/',}
+        upload_data = {
+            'title':(None,''),
+            'author':(None,'eljaguar1234'),
+            'license':(None,'allrightsreserved'),
+            'itemid':(None,query['itemid']),
+            'repo_id':(None,4),
+            'p':(None,''),
+            'page':(None,''),
+            'env':(None,query['env']),
+            'sesskey':(None,sesskey),
+            'client_id':(None,client_id),
+            'maxbytes':(None,query['maxbytes']),
+            'areamaxbytes':(None,query['areamaxbytes']),
+            'ctx_id':(None,query['ctx_id']),
+            'savepath':(None,'/')}
 
-        print(upload_datass)
+        print(upload_data)
 
         def upload_callback(monitor):
 
@@ -430,7 +431,7 @@ class NubApi():
     
         url_post = self.Moodle+"/repository/repository_ajax.php?action=upload"
 
-        respuesta = requests.post(url_post,cookies=self.Session.cookies,data=upload_datass,files=upload_file)
+        respuesta = requests.post(url_post,cookies=self.Session.cookies,data=upload_data,files=upload_file)
 
         self.SalverEvidencia(evidence=evidenciaid)
 
