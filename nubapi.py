@@ -402,12 +402,6 @@ class NubApi():
 
              update.message.reply_text("✅ Se subio correctamente el fichero " + name+"✅")
 
-             cargandojson = json.loads(respuesta.text)
-
-             linkdirecto = self.getDirectUrl(cargandojson["url"])
-
-             cargandojson["url"]=linkdirecto
-
              mensajeuno.delete()
 
              if(os.path.exists(pathfile)):
