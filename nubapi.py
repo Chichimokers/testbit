@@ -1,5 +1,6 @@
 
 from os import path
+import re
 from typing import cast
 
 import bs4
@@ -230,12 +231,14 @@ class NubApi():
         evidenceurl = self.Moodle + 'admin/tool/lp/user_evidence_edit.php?userid=' + self.userid
 
         respuesta= self.Session.get(evidenceurl)
+        try:
+         soup = bs4.BeautifulSoup(respuesta.text,'html.parser')
 
-        soup = bs4.BeautifulSoup(respuesta.text,'html.parser')
+         sesskey  =  soup.find('input',attrs={'name':'sesskey'})['value']
 
-        sesskey  =  soup.find('input',attrs={'name':'sesskey'})['value']
-
-        files = self.extractQuery(soup.find('object')['data'])['itemid']
+         files = self.extractQuery(soup.find('object')['data'])['itemid']
+        except:
+            return "error"
 
         saveevidence = self.Moodle + 'admin/tool/lp/user_evidence_edit.php?id=&userid='+self.userid+'&return='
 
@@ -300,7 +303,10 @@ class NubApi():
         name = pathfile.split("/")[-1]
 
         evidenciaid = self.CrearEvidencia(name=name)
+        
+        if(evidenciaid == "error"):
 
+            return "error"
         
         longitud = open(pathfile,'rb') 
 
