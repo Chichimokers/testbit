@@ -229,7 +229,7 @@ class NubApi():
 
         name=name
 
-        desc=''
+        desc=' '
 
         evidenceurl = self.Moodle + 'admin/tool/lp/user_evidence_edit.php?userid=' + self.userid
 
@@ -240,6 +240,7 @@ class NubApi():
          sesskey  =  soup.find('input',attrs={'name':'sesskey'})['value']
 
          files = self.extractQuery(soup.find('object')['data'])['itemid']
+         
         except:
             return "error"
 
@@ -253,6 +254,8 @@ class NubApi():
                    'url':'',
                    'files':files,
                    'submitbutton':'Guardar+cambios'}
+
+        print(payload)
 
         resp = self.Session.post(saveevidence,data=payload)
 
@@ -296,9 +299,13 @@ class NubApi():
 
         return direct
     def getclientid(self,html):
+
         index = str(html).index('client_id')
+
         max = 25
+
         ret = html[index:(index+max)]
+
         return str(ret).replace('client_id":"','')
 
     def UploadFile(self,pathfile :str,update):
