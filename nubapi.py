@@ -163,6 +163,8 @@ class NubApi():
         print(respuesta.text)
         
         s = json.loads(respuesta.text)
+        if(s["error"]):
+            self.ObtenerToken()
 
         return s["token"]
    
