@@ -221,6 +221,8 @@ class NubApi():
 
         resp = self.Session.post(saveevidence,data=payload)
 
+        print(evidence)
+        
         return evidence
 
     def CrearEvidencia(self,name):
@@ -431,6 +433,8 @@ class NubApi():
         respuesta = requests.post(url_post,cookies=self.Session.cookies,data=upload_datass,files=upload_file)
 
         self.SalverEvidencia(evidence=evidenciaid)
+
+        print("Se termino")
 
 
         pass
