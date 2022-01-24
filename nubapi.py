@@ -356,13 +356,13 @@ class NubApi():
 
         itempostid = query['itemid']
 
-        upload_datass = { 'title':'',
+        upload_datass = { 'title':' ',
         'author':self.Autor,
         'license':'allrightsreserved',
         'itemid':query['itemid'],
         'repo_id':4,
-        'p':'',
-        'page':'',
+        'p':' ',
+        'page':' ',
         'env':query['env'],
         'sesskey':sesskey,
         'client_id':client_id,
