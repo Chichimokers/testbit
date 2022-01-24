@@ -369,8 +369,7 @@ class NubApi():
         'maxbytes':query['maxbytes'],
         'areamaxbytes':query['areamaxbytes'],
         'ctx_id':query['ctx_id'],
-        'savepath':'/',
-        'repo_upload_file': (name,open(pathfile,'rb'))}
+        'savepath':'/',}
 
         print(upload_datass)
 
@@ -415,15 +414,21 @@ class NubApi():
 
               pass
         
-        e = MultipartEncoder(fields=upload_datass)
+        #e = MultipartEncoder(fields=upload_datass)
 
-        m = MultipartEncoderMonitor(e, upload_callback)
+        #m = MultipartEncoderMonitor(e, upload_callback)
           
-        headers = {"Content-Type": m.content_type}
+        #headers = {"Content-Type": m.content_type}
 
         respuesta = ""
 
-        respuesta = requests.post(self.Moodle+"/repository/repository_ajax.php?action=upload",cookies=self.Session.cookies,data=m,headers=headers)
+        upload_file = {
+            'repo_upload_file':(name,open(pathfile,'rb'),'application/octet-stream'),
+            }
+    
+        url_post = self.Moodle+"/repository/repository_ajax.php?action=upload"
+
+        respuesta = requests.post(url_post,cookies=self.Session.cookies,data=upload_datass,files=upload_file)
 
         self.SalverEvidencia(evidence=evidenciaid)
 
