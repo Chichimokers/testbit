@@ -237,7 +237,7 @@ class NubApi():
 
         files = self.extractQuery(soup.find('object')['data'])['itemid']
 
-        saveevidence = self.path + 'admin/tool/lp/user_evidence_edit.php?id=&userid='+self.userid+'&return='
+        saveevidence = self.Moodle + 'admin/tool/lp/user_evidence_edit.php?id=&userid='+self.userid+'&return='
 
         payload = {'userid':self.userid,
                    'sesskey':sesskey,
