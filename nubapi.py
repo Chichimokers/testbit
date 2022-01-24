@@ -425,7 +425,9 @@ class NubApi():
              encoder = json.encoder.JSONEncoder()
 
              asd= encoder.encode(str(cargandojson))
-             
+
+             print(asd)
+
              return asd
 
 
