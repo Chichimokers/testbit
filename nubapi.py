@@ -428,6 +428,7 @@ class NubApi():
         pass
 
     def UploadsFile(self,pathfile :str,update):
+        
 
           name = pathfile.split("/")[-1]
 
