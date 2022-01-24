@@ -173,7 +173,7 @@ class NubApi():
             
         except:
 
-           return s["token"]
+           return s["privatetoken"]
 
         pass
    
