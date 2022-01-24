@@ -1,5 +1,6 @@
 
 from os import path
+from typing import cast
 
 import bs4
 
@@ -163,10 +164,18 @@ class NubApi():
         print(respuesta.text)
         
         s = json.loads(respuesta.text)
-        if(s["error"]):
-            self.ObtenerToken()
 
-        return s["token"]
+        try:
+
+           if(s["error"]):
+
+             self.ObtenerToken()
+            
+        except:
+
+           return s["token"]
+
+        pass
    
     def DowlandFile(self,url):
 
