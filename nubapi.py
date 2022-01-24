@@ -54,6 +54,8 @@ class NubApi():
 
         self.token = ""
 
+        self.userid=""
+
         self.Autor = "Alguien Escondido"
 
         self.username = self.configuracion.username
@@ -86,6 +88,8 @@ class NubApi():
           er = bs4.BeautifulSoup(contenido,'html.parser')
 
           tokelonginer = er.find('input',{'name':'logintoken'})['value']
+
+          self.userid = er.find('div',{'id':'nav-notification-popover-container'})['data-userid']
 
           self.token = tokelonginer
       
@@ -128,6 +132,7 @@ class NubApi():
           self.Session.headers.update({"Content-Type":"application/x-www-form-urlencoded"})
 
           respuesta = self.Session.post(url=self.urls,data=data)
+
 
           #print("##########Headers de la sesion ##########") 
 
@@ -176,7 +181,79 @@ class NubApi():
            return s["privatetoken"]
 
         pass
-   
+
+    def extractQuery(self,url):
+        tokens = str(url).split('?')[1].split('&')
+        retQuery = {}
+        for q in tokens:
+            qspl = q.split('=')
+            try:
+                retQuery[qspl[0]] = qspl[1]
+            except:
+                 retQuery[qspl[0]] = None
+        return retQuery
+
+    def SalverEvidencia(self,evidence):
+
+        evidenceurl = self.Moodle + 'admin/tool/lp/user_evidence_edit.php?id='+evidence['id']+'&userid='+self.userid+'&return=list'
+
+        resp = self.Session.get(evidenceurl)
+
+        soup = bs4.BeautifulSoup(resp.text,'html.parser')
+
+        sesskey  =  soup.find('input',attrs={'name':'sesskey'})['value']
+
+        files = evidence['files']
+
+        saveevidence = self.Moodle + 'admin/tool/lp/user_evidence_edit.php?id='+evidence['id']+'&userid='+self.userid+'&return=list'
+
+        payload = {'userid':self.userid,
+                   'sesskey':sesskey,
+                   '_qf__tool_lp_form_user_evidence':1,
+                   'name':evidence['name'],'description[text]':evidence['desc'],
+                   'description[format]':1,'url':'',
+                   'files':files,
+                   'submitbutton':'Guardar cambios'}
+
+        resp = self.Session.post(saveevidence,data=payload)
+
+        return evidence
+
+    def CrearEvidencia(self,name):
+
+        name=name
+
+        desc=''
+
+        evidenceurl = self.path + 'admin/tool/lp/user_evidence_edit.php?userid=' + self.userid
+
+        respuesta= self.Session.get(evidenceurl)
+
+        soup = bs4.BeautifulSoup(respuesta.text,'html.parser')
+
+        sesskey  =  soup.find('input',attrs={'name':'sesskey'})['value']
+
+        files = self.extractQuery(soup.find('object')['data'])['itemid']
+
+        saveevidence = self.path + 'admin/tool/lp/user_evidence_edit.php?id=&userid='+self.userid+'&return='
+
+        payload = {'userid':self.userid,
+                   'sesskey':sesskey,
+                   '_qf__tool_lp_form_user_evidence':1,
+                   'name':name,'description[text]':desc,
+                   'description[format]':1,
+                   'url':'',
+                   'files':files,
+                   'submitbutton':'Guardar+cambios'}
+
+        resp = self.Session.post(saveevidence,data=payload)
+
+        evidenceid = str(resp.url).split('?')[1].split('=')[1]
+
+        return {'name':name,'desc':desc,'id':evidenceid,'url':resp.url,'files':[]}
+
+        pass
+
     def DowlandFile(self,url):
 
         clean_url = parse.unquote(url)
@@ -210,8 +287,138 @@ class NubApi():
         direct = self.Moodle+'webservice/pluginfile.php/'+tokens[4]+'/user/private/'+tokens[-1]+'?token='+self.ObtenerToken()
 
         return direct
+    def getclientid(self,html):
+        index = str(html).index('client_id')
+        max = 25
+        ret = html[index:(index+max)]
+        return str(ret).replace('client_id":"','')
 
     def UploadFile(self,pathfile :str,update):
+
+        name = pathfile.split("/")[-1]
+
+        evidenciaid = self.CrearEvidencia(name=name)
+
+        
+        longitud = open(pathfile,'rb') 
+
+        datos = longitud.read()
+
+        size = len(datos)
+
+        tamanofinal =str(CheckSize(len(datos)))
+
+        iles = {"repo_upload_file": open(pathfile,'rb')}
+
+        print("El size del archivo es "+ str(tamanofinal))
+
+
+        fileurl = self.Moodle + 'admin/tool/lp/user_evidence_edit.php?userid=' + self.userid
+
+        resp = self.Session.get(fileurl)
+
+        _qf__user_files_form = 1
+
+        try:
+
+         soup = bs4.BeautifulSoup(resp.text,'html.parser')
+
+         query = self.extractQuery(soup.find('object',attrs={'type':'text/html'})['data'])
+
+         sesskey  =  soup.find('input',attrs={'name':'sesskey'})['value']
+
+         client_id = self.getclientid(resp.text)
+
+        except:
+             
+              print("No se pudo obtener la sesskey")
+              
+              return "error"
+            
+        print("Subiendo "+pathfile)
+
+        if(update != None):
+            
+            update.message.reply_text("Se esta subiendo el archivo "+ str(name))
+
+        update.message.reply_text("La longitud del arhcivo es :"+str(tamanofinal))
+
+        mensajeuno = update.message.reply_text("Uploading 0%")
+
+        itempostid = query['itemid']
+
+        upload_data = {
+            'title':(None,''),
+            'author':(None,self.Autor),
+            'license':(None,'allrightsreserved'),
+            'itemid':(None,query['itemid']),
+            'repo_id':(None,4),
+            'p':(None,''),
+            'page':(None,''),
+            'env':(None,query['env']),
+            'sesskey':(None,sesskey),
+            'client_id':(None,client_id),
+            'maxbytes':(None,query['maxbytes']),
+            'areamaxbytes':(None,query['areamaxbytes']),
+            'ctx_id':(None,query['ctx_id']),
+            'savepath':(None,'/')}
+
+        post_file_url = self.path+'repository/repository_ajax.php?action=upload'
+
+        def upload_callback(monitor):
+
+              
+            s = "Se ha subido " + CheckSize(int(monitor.bytes_read)) + " de "+ tamanofinal
+          
+            now = datetime.now()
+
+            if(int(monitor.bytes_read) != 0 ):
+             
+              porcent = int(monitor.bytes_read/size*100)
+
+              cambio = str("Uploading "+str(CheckSize(monitor.bytes_read))+" de "+str(CheckSize(size))+" "+str(porcent)+"%") 
+ 
+              print(s)
+
+              if(mensajeuno.text.split(" ")[-1] != str(str(porcent)+"%")):
+ 
+                   lista = [1,10,15,20,30,35,40,50,60,70,80,90,100]
+
+                   for e in lista:
+
+                     if(e == int(porcent)):
+
+                         print("Se cambio")
+                         
+                         lastporcent = str(porcent)
+
+                         mensajeuno.text = cambio
+                         
+                         mensajeuno.edit_text(cambio)
+
+
+               
+              else :
+                 print("no se cambio")
+
+              
+        
+
+              pass
+        
+        e = MultipartEncoder(fields=upload_data)
+
+        m = MultipartEncoderMonitor(e, upload_callback)
+
+        headers = {"Content-Type": m.content_type}
+
+        resp2 = self.Session.post(post_file_url,data=m,headers=headers)
+
+        self.SalverEvidencia(evidence=evidenciaid)
+
+        pass
+    
+    def UploadsFile(self,pathfile :str,update):
 
           name = pathfile.split("/")[-1]
 
