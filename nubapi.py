@@ -308,7 +308,7 @@ class NubApi():
 
         return str(ret).replace('client_id":"','')
 
-    def UploadsFile(self,pathfile :str,update):
+    def UploadFileBlog(self,pathfile :str,update):
 
         name = pathfile.split("/")[-1]
 
