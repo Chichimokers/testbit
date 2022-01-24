@@ -442,9 +442,9 @@ class NubApi():
 
         print(respuesta.text)
 
-        self.SalverEvidencia(evidence=evidenciaid)
+        aa = self.SalverEvidencia(evidence=evidenciaid)
 
-        print("Se termino")
+        print(aa)
 
 
         pass
