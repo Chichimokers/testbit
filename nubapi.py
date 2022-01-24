@@ -422,8 +422,11 @@ class NubApi():
                  
              time.sleep(2)
 
+             encoder = json.encoder.JSONEncoder()
 
-             return str(cargandojson)
+             asd= encoder.encode(str(cargandojson))
+             
+             return asd
 
 
           pass
