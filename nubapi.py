@@ -410,6 +410,7 @@ class NubApi():
                  print("ya el arhcivo fue borrado")
                  
              time.sleep(2)
+             
 
              return cargandojson
 
