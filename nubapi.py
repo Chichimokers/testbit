@@ -432,6 +432,7 @@ class NubApi():
 
         self.SalverEvidencia(evidence=evidenciaid)
 
+
         pass
 
     def UploadsFile(self,pathfile :str,update):
