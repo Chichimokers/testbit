@@ -393,7 +393,7 @@ class NubApi():
              cargandojson = json.loads(respuesta.text)
 
              linkdirecto = self.getDirectUrl(cargandojson["url"])
-             
+
              cargandojson["url"]=linkdirecto
 
              mensajeuno.delete()
@@ -411,7 +411,7 @@ class NubApi():
                  
              time.sleep(2)
 
-             return respuesta.text
+             return cargandojson
 
 
           pass
