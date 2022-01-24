@@ -89,8 +89,6 @@ class NubApi():
 
           tokelonginer = er.find('input',{'name':'logintoken'})['value']
 
-          self.userid = er.find('div',{'id':'nav-notification-popover-container'})['data-userid']
-
           self.token = tokelonginer
       
           #   print("##########Headers de la sesion ##########")
@@ -149,6 +147,10 @@ class NubApi():
           print(respuesta)
 
           print(respuesta.links)
+          er = bs4.BeautifulSoup(respuesta.text,'html.parser')
+ 
+
+          self.userid = er.find('div',{'id':'nav-notification-popover-container'})['data-userid']
 
            #  for a in self.Session.cookies:
 
@@ -315,19 +317,19 @@ class NubApi():
 
         fileurl = self.Moodle + 'admin/tool/lp/user_evidence_edit.php?userid=' + self.userid
 
-        resp = self.Session.get(fileurl)
+        respa = self.Session.get(fileurl)
 
         _qf__user_files_form = 1
 
         try:
 
-         soup = bs4.BeautifulSoup(resp.text,'html.parser')
+         soup = bs4.BeautifulSoup(respa.text,'html.parser')
 
          query = self.extractQuery(soup.find('object',attrs={'type':'text/html'})['data'])
 
          sesskey  =  soup.find('input',attrs={'name':'sesskey'})['value']
 
-         client_id = self.getclientid(resp.text)
+         client_id = self.getclientid(respa.text)
 
         except:
              
@@ -417,7 +419,7 @@ class NubApi():
         self.SalverEvidencia(evidence=evidenciaid)
 
         pass
-    
+
     def UploadsFile(self,pathfile :str,update):
 
           name = pathfile.split("/")[-1]
