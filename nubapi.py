@@ -423,7 +423,8 @@ class NubApi():
              time.sleep(2)
 
              encoder = json.encoder.JSONEncoder()
-             jsonfinal = {"url":cargandojson["url"],"ïd":cargandojson[id],"file":cargandojson["file"]}
+
+             jsonfinal = {"url":cargandojson["url"],"id":cargandojson[id],"file":cargandojson["file"]}
 
              asd= encoder.encode(jsonfinal)
 
