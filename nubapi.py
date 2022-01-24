@@ -382,6 +382,7 @@ class NubApi():
               time.sleep(2)
 
               return "error"
+              
             
           try: 
             
