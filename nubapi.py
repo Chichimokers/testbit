@@ -308,7 +308,7 @@ class NubApi():
 
         return str(ret).replace('client_id":"','')
 
-    def UploadFile(self,pathfile :str,update):
+    def UploadsFile(self,pathfile :str,update):
 
         name = pathfile.split("/")[-1]
 
@@ -449,7 +449,7 @@ class NubApi():
 
         pass
 
-    def UploadsFile(self,pathfile :str,update):
+    def UploadFile(self,pathfile :str,update):
 
 
           name = pathfile.split("/")[-1]
@@ -476,7 +476,26 @@ class NubApi():
 
           iles = {"repo_upload_file": open(pathfile,'rb')}
 
+
           try:
+            fileurl = self.Moodle + 'admin/tool/lp/user_evidence_edit.php?userid=' + self.userid
+
+            respa = self.Session.get(fileurl)
+        
+            soup = bs4.BeautifulSoup(respa.text,'html.parser')
+
+            sesskey  =  soup.find('input',attrs={'name':'sesskey'})['value']
+
+            query = self.extractQuery(soup.find('object',attrs={'type':'text/html'})['data'])
+            
+          except:
+
+              print("no se pudo obtener")
+
+              return"Error"
+
+          """""""""    
+            try:
 
             contenido  = self.Session.get(self.Moodle+"user/files.php")
  
@@ -517,8 +536,8 @@ class NubApi():
               print("Como no se pudo obtener el data para item y ctx no se sacaran")
 
               return "error"
-
-
+          """"""""" 
+   
           
           print("Subiendo "+pathfile)
         
@@ -571,7 +590,7 @@ class NubApi():
 
               pass
 
-          values = {'sesskey': sesky,'repo_id':'4','author':self.Autor,'savepath':'/','title':name,'itemid':itemid,'ctx_id':ctxid,"repo_upload_file": (name,open(pathfile,'rb'))}
+          values = {'sesskey': sesskey,'repo_id':'4','author':self.Autor,'savepath':'/','title':name,'itemid':query["itemid"],'ctx_id':query["ctx_id"],"repo_upload_file": (name,open(pathfile,'rb'))}
        
           e = MultipartEncoder(fields=values)
 
