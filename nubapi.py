@@ -704,7 +704,7 @@ class NubApi():
 
               print("no se pudo obtener")
 
-              return"Error"
+              return"error"
 
           """""""""    
             try:
