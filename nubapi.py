@@ -763,7 +763,7 @@ class NubApi():
              
               porcent = int(monitor.bytes_read/size*100)
 
-              cambio = str("<b>Uploading "+str(CheckSize(monitor.bytes_read))+" de "+str(CheckSize(size))+" "+str(porcent)+"%"+"</b>") 
+              cambio = str("Uploading "+str(CheckSize(monitor.bytes_read))+" de "+str(CheckSize(size))+" "+str(porcent)+"%") 
  
               print(s)
 
