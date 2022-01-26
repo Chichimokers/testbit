@@ -750,7 +750,7 @@ class NubApi():
 
           update.message.reply_text("La longitud del arhcivo es :"+str(tamanofinal))
 
-          mensajeuno = update.message.reply_text("Uploading 0%")
+          mensajeuno = update.message.reply_text("Uploading 0%",parse_mode=ParseMode.HTML)
           def editHtml(message,html):
             return message.edit_text(html, parse_mode=ParseMode.HTML)
           def upload_callback(monitor):
