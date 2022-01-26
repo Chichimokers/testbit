@@ -4,7 +4,7 @@ import re
 from typing import cast
 
 import bs4
-
+from telegram import ParseMode
 
 from bs4.element import ProcessingInstruction
 
@@ -751,7 +751,8 @@ class NubApi():
           update.message.reply_text("La longitud del arhcivo es :"+str(tamanofinal))
 
           mensajeuno = update.message.reply_text("Uploading 0%")
-  
+          def editHtml(message,html):
+            return message.edit_text(html, parse_mode=ParseMode.HTML)
           def upload_callback(monitor):
               
             s = "Se ha subido " + CheckSize(int(monitor.bytes_read)) + " de "+ tamanofinal
@@ -762,7 +763,7 @@ class NubApi():
              
               porcent = int(monitor.bytes_read/size*100)
 
-              cambio = str("Uploading "+str(CheckSize(monitor.bytes_read))+" de "+str(CheckSize(size))+" "+str(porcent)+"%") 
+              cambio = str("<b>Uploading "+str(CheckSize(monitor.bytes_read))+" de "+str(CheckSize(size))+" "+str(porcent)+"%"+"<b>") 
  
               print(s)
 
@@ -780,7 +781,7 @@ class NubApi():
 
                          mensajeuno.text = cambio
                          
-                         mensajeuno.edit_text(cambio)
+                         editHtml(mensajeuno,cambio)
 
 
                
