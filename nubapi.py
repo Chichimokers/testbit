@@ -752,8 +752,7 @@ class NubApi():
 
           mensajeuno = update.message.reply_text("<b>Uploading 0%</b>",parse_mode=ParseMode.HTML)
 
-          def editHtml(message,html):
-            return message.edit_text(html, parse_mode=ParseMode.HTML)
+    
           def upload_callback(monitor):
               
             s = "Se ha subido " + CheckSize(int(monitor.bytes_read)) + " de "+ tamanofinal
@@ -782,7 +781,7 @@ class NubApi():
 
                          mensajeuno.text = cambio
                          
-                         editHtml(mensajeuno,cambio)
+                         mensajeuno.edit_text(cambio, parse_mode=ParseMode.HTML)
 
 
                
