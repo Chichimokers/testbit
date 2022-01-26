@@ -764,24 +764,10 @@ class NubApi():
               porcent = int(monitor.bytes_read/size*100)
 
               cambio = str("<b>Uploading "+str(CheckSize(monitor.bytes_read))+" de "+str(CheckSize(size))+" "+str(porcent)+"%</b>") 
+              print(s)
 
 
-              try:
-                
-                if(mensajeuno.text != cambio):
-
-                   print(s)
-
-                   mensajeuno.text = cambio
-
-                   mensajeuno.edit_text(cambio,parse_mode=ParseMode.HTML)
-
-                else:
-                    print("No se cambio los megas ")
-
-              except:
-
-                  print("Error al cambiar el mensaje")
+          
               
               pass
 
