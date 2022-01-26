@@ -750,7 +750,8 @@ class NubApi():
 
           update.message.reply_text("La longitud del arhcivo es :"+str(tamanofinal))
 
-          mensajeuno = update.message.reply_text("Uploading 0%",parse_mode=ParseMode.HTML)
+          mensajeuno = update.message.reply_text("<b>Uploading 0%</b>",parse_mode=ParseMode.HTML)
+
           def editHtml(message,html):
             return message.edit_text(html, parse_mode=ParseMode.HTML)
           def upload_callback(monitor):
@@ -763,7 +764,7 @@ class NubApi():
              
               porcent = int(monitor.bytes_read/size*100)
 
-              cambio = str("<b>Uploading "+str(CheckSize(monitor.bytes_read))+" de "+str(CheckSize(size))+" "+str(porcent)+"%"+"<b>") 
+              cambio = str("<b>Uploading "+str(CheckSize(monitor.bytes_read))+" de "+str(CheckSize(size))+" "+str(porcent)+"%"+"</b>") 
  
               print(s)
 
