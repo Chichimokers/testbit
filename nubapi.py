@@ -765,21 +765,27 @@ class NubApi():
 
               cambio = str("<b>Uploading "+str(CheckSize(monitor.bytes_read))+" de "+str(CheckSize(size))+" "+str(porcent)+"%</b>") 
  
-              print(s)
+   
 
               try:
                 
                 if(mensajeuno.text != cambio):
-                    
+
+                   print(s)
+
                    mensajeuno.text = cambio
 
                    mensajeuno.edit_text(cambio,parse_mode=ParseMode.HTML)
+
+                else:
+                    print("No se cambio la velocidad")
 
               except:
 
                   print("Error al cambiar el mensaje")
                
               else :
+
                  print("no se cambio")
 
               
