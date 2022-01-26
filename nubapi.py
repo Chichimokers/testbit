@@ -63,14 +63,11 @@ class NubApi():
 
         self.password = self.configuracion.password
 
-       
-        
         self.InitialNegotiation()
 
         self.Login()
 
         pass
-
     def GetDashBoard(self):
 
         respuesta = requests.get(self.Moodle+"/my",cookies=self.Session.cookies)
@@ -78,7 +75,6 @@ class NubApi():
         print(respuesta.text)
 
         print(respuesta.url)
-
     def InitialNegotiation(self):
 
         try:
@@ -107,12 +103,15 @@ class NubApi():
           for a in self.Session.cookies:
  
             print(a)
+
+
         except:
+
          print("Error al obtener logintken")
-         self.InitialNegotiation()
+
+         time.sleep(2)
 
         pass
-
     def Login(self):
 
         try:
@@ -160,10 +159,8 @@ class NubApi():
             
            print("Ha ocurrido un Error al loguearse en la nube")
 
-           self.Login()
-
+           time.sleep(2)
         pass
-
     def ObtenerToken(self):
 
         valores = {'username':self.username,'password':self.password,'service':'moodle_mobile_app'}
@@ -185,7 +182,6 @@ class NubApi():
            return s["privatetoken"]
 
         pass
-
     def extractQuery(self,url):
         tokens = str(url).split('?')[1].split('&')
         retQuery = {}
@@ -196,7 +192,6 @@ class NubApi():
             except:
                  retQuery[qspl[0]] = None
         return retQuery
-
     def SalverEvidencia(self,evidence):
 
         evidenceurl = self.Moodle + 'admin/tool/lp/user_evidence_edit.php?id='+evidence['id']+'&userid='+self.userid+'&return=list'
@@ -224,7 +219,6 @@ class NubApi():
         print(evidence)
 
         return evidence
-
     def CrearEvidencia(self,name):
 
         name=name
@@ -264,7 +258,6 @@ class NubApi():
         return {'name':name,'desc':desc,'id':evidenceid,'url':resp.url,'files':[]}
 
         pass
-
     def DowlandFile(self,url):
 
         clean_url = parse.unquote(url)
@@ -289,8 +282,7 @@ class NubApi():
                 
                 print("Se han copiado "+CheckSize(bytescopiados))
 
-        f.close()
-        
+        f.close()       
     def getDirectUrl(self,url):
 
         tokens = str(url).split('/')
@@ -307,7 +299,6 @@ class NubApi():
         ret = html[index:(index+max)]
 
         return str(ret).replace('client_id":"','')
-
     def UploadFileBlog(self,pathfile :str,update):
 
         name = pathfile.split("/")[-1]
@@ -448,7 +439,6 @@ class NubApi():
 
 
         pass
-
     def UploadFilessss(self,pathfile :str,update):
 
 
@@ -662,8 +652,8 @@ class NubApi():
 
 
           pass
-
     def UploadFile(self,pathfile :str,update):
+             
           name = pathfile.split("/")[-1]
 
           #with  as file:
@@ -778,7 +768,7 @@ class NubApi():
 
               if(mensajeuno.text.split(" ")[-1] != str(str(porcent)+"%")):
  
-                   lista = [1,10,15,20,30,35,40,50,60,70,80,90,100]
+                   lista = [100]
 
                    for e in lista:
 
