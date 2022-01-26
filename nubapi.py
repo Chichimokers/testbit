@@ -767,12 +767,13 @@ class NubApi():
  
               print(s)
 
-    
               try:
+                
+                if(mensajeuno.text != cambio):
+                    
+                   mensajeuno.text = cambio
 
-               mensajeuno.text = cambio
-
-               mensajeuno.edit_text(cambio,parse_mode=ParseMode.HTML)
+                   mensajeuno.edit_text(cambio,parse_mode=ParseMode.HTML)
 
               except:
 
