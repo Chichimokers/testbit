@@ -767,21 +767,14 @@ class NubApi():
  
               print(s)
 
-              if(mensajeuno.text.split(" ")[-1] != str(str(porcent)+"%")):
- 
-                   lista = [1,10,30,50,70,90,100]
+    
+              try:
 
-                   for e in lista:
+               mensajeuno.text = cambio
 
-                     if(e == int(porcent)):
-
-                         print("Se cambio")
-                         
-                         lastporcent = str(porcent)
-                    
-                         mensajeuno.text = cambio
-
-                         mensajeuno.edit_text(cambio)
+               mensajeuno.edit_text(cambio)
+              except:
+                  print("Error al cambiar el mensaje")
 
                          
 
