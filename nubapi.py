@@ -777,7 +777,7 @@ class NubApi():
                    mensajeuno.edit_text(cambio,parse_mode=ParseMode.HTML)
 
                 else:
-                    print("No se cambio la velocidad")
+                    print("No se cambio los megas ")
 
               except:
 
