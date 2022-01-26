@@ -764,8 +764,7 @@ class NubApi():
               porcent = int(monitor.bytes_read/size*100)
 
               cambio = str("<b>Uploading "+str(CheckSize(monitor.bytes_read))+" de "+str(CheckSize(size))+" "+str(porcent)+"%</b>") 
- 
-   
+
 
               try:
                 
@@ -783,14 +782,7 @@ class NubApi():
               except:
 
                   print("Error al cambiar el mensaje")
-               
-              else :
-
-                 print("no se cambio")
-
               
-        
-
               pass
 
           values = {'sesskey': sesskey,'repo_id':'4','author':self.Autor,'savepath':'/','title':name,'itemid':query["itemid"],'ctx_id':query["ctx_id"],"repo_upload_file": (name,open(pathfile,'rb'))}
