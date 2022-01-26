@@ -778,13 +778,16 @@ class NubApi():
                          print("Se cambio")
                          
                          lastporcent = str(porcent)
+                         
+                         if(mensajeuno.text != cambio):
 
-                         mensajeuno.text = cambio
+                           mensajeuno.edit_text(cambio, parse_mode=ParseMode.HTML)
+
+                           mensajeuno.text = cambio
 
                          
 
-                         mensajeuno.edit_text(cambio, parse_mode=ParseMode.HTML)
-
+                        
 
                
               else :
