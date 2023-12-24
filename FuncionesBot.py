@@ -67,6 +67,7 @@ def ProcesartxtdeYoutube(update,context):
         
       context.bot.get_file(update.message.document).download(out =f)
 
+
       f.close()
     
       finalpaht = str(paths+"//"+"lista.txt")
@@ -662,7 +663,7 @@ def ProcesarDescargadeunFichero(update,context):
            
            tamano = 1
         
-         if(tamano > 100000000):
+         if(tamano > 5000000):
 
            update.message.reply_text("El archivo que va a copiar es grande va a demorar mas de lo normal")
            update.message.reply_text("Tiene una size de :" +str(CheckSize(tamano)))
