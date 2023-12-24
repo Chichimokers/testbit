@@ -156,7 +156,7 @@ def ProcesartxtdeYoutube(update,context):
 
       print("Descarga del los videos del txt completada")
 
-      update.message.chat.send_document(document = open("//ListadeVideos.json","r"))
+      update.message.chat.send_document(document = open("//ListadeVideos.json","rb"))
 
       update.message.reply_text("Descarga de los videos del txt completada")
 
@@ -264,7 +264,7 @@ def DescargarVideodeYoutube(update,context):
 
         update.message.chat.send_action(action=ChatAction.UPLOAD_DOCUMENT,timeout = 5)
 
-        update.message.chat.send_document(document = open(finalpaht+".json","r"))
+        update.message.chat.send_document(document = open(finalpaht+".json","rb"))
 
         Tarea.stop()
 
@@ -489,11 +489,11 @@ def DowlandFromTxt(update,context):
         """ if(cantidadcopiados == len(enlaces)/2):
 
           update.message.chat.send_document(document = open("//"+update.message.chat.username+"ListadeDescargas.json","r"))"""
-        if(open("//"+update.message.chat.username+"ListadeDescargas.json","r").read() != None):
+        if(open("//"+update.message.chat.username+"ListadeDescargas.json","rb").read() != None):
               
          archivoaenviar.close()
 
-         update.message.chat.send_document(document = open("//"+update.message.chat.username+"ListadeDescargas.json","r"))
+         update.message.chat.send_document(document = open("//"+update.message.chat.username+"ListadeDescargas.json","rb"))
         
         update.message.reply_text("Se han copiado "+str(cantidadcopiados)+"de "+str(len(enlaces)) +" Ficheros")
 
@@ -505,7 +505,7 @@ def DowlandFromTxt(update,context):
 
       print("Descarga de los archivos del txt completada")
 
-      update.message.chat.send_document(document = open("//"+update.message.chat.username+"ListadeDescargas.json","r"))
+      update.message.chat.send_document(document = open("//"+update.message.chat.username+"ListadeDescargas.json","rb"))
 
       update.message.reply_text("Descarga de los archivos del txt completada")
 
