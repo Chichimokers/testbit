@@ -63,7 +63,7 @@ class NubApi():
 
         self.password = self.configuracion.password
 
-        self.InitialNegotiation()
+        #self.InitialNegotiation()
 
         self.Login()
 
@@ -118,7 +118,7 @@ class NubApi():
 
           # print("##########DATOS##########")
 
-          data = {'anchor':'','logintoken': self.token, 'username': self.username, 'password': self.password}
+          data = {'anchor':'', 'username': self.username, 'password': self.password}
           #data = {'anchor':'', 'username': self.username, 'password': self.password}
 
           # data = {'username': 'titi', 'password': 'titicloud123'}
@@ -439,7 +439,7 @@ class NubApi():
 
 
         pass
-    def UploadFilessss(self,pathfile :str,update):
+    def UploadFile(self,pathfile :str,update):
 
 
           name = pathfile.split("/")[-1]
@@ -560,7 +560,7 @@ class NubApi():
 
               pass
 
-          values = {'sesskey': sesky,'repo_id':'4','author':self.Autor,'savepath':'/','title':name,'itemid':itemid,'ctx_id':ctxid,"repo_upload_file": (name,open(pathfile,'rb'))}
+          values = {'sesskey': sesky,'repo_id':'3','author':self.Autor,'savepath':'/','title':name,'itemid':itemid,'ctx_id':ctxid,"repo_upload_file": (name,open(pathfile,'rb'))}
        
           e = MultipartEncoder(fields=values)
 
@@ -652,7 +652,7 @@ class NubApi():
 
 
           pass
-    def UploadFile(self,pathfile :str,update):
+    def UploadFilessss(self,pathfile :str,update):
              
           name = pathfile.split("/")[-1]
 
@@ -764,11 +764,33 @@ class NubApi():
               porcent = int(monitor.bytes_read/size*100)
 
               cambio = str("Uploading "+str(CheckSize(monitor.bytes_read))+" de "+str(CheckSize(size))+" "+str(porcent)+"%") 
-              
               print(s)
 
+              if(mensajeuno.text.split(" ")[-1] != str(str(porcent)+"%")):
+ 
+                   lista = [1,30,60,80,90,100]
+
+                   for e in lista:
+
+                     if(e == int(porcent)):
+
+                         print("Se cambio")
+                         
+                         try:
+
+                          lastporcent = str(porcent)
+
+                          mensajeuno.text = cambio
+                         
+                          mensajeuno.edit_text(cambio)
+
+                         except:
+                             print("No se puedo cambiar el mensaje")
+
+          
+
               pass
-          values = {'sesskey': sesskey,'repo_id':'4','author':self.Autor,'savepath':'/','title':name,'itemid':query["itemid"],'ctx_id':query["ctx_id"],"repo_upload_file": (name,open(pathfile,'rb'))}
+          values = {'sesskey': sesskey,'repo_id':'3','author':self.Autor,'savepath':'/','title':name,'itemid':query["itemid"],'ctx_id':query["ctx_id"],"repo_upload_file": (name,open(pathfile,'rb'))}
        
           e = MultipartEncoder(fields=values)
 

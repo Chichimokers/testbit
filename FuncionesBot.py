@@ -77,15 +77,15 @@ def ProcesartxtdeYoutube(update,context):
 
       archivo.close()
 
-      if(os.path.isfile("/app/ListadeVideos.json")): 
+      if(os.path.isfile("//ListadeVideos.json")): 
           
-        os.remove("/app/ListadeVideos.json")
+        os.remove("//ListadeVideos.json")
 
       else:
 
         print("No existe")
 
-      archivoaenviar = open("/app/ListadeVideos.json","a")
+      archivoaenviar = open("//ListadeVideos.json","a")
 
       def RetryError(files,names,update,multi,nube):
 
@@ -155,7 +155,7 @@ def ProcesartxtdeYoutube(update,context):
 
       print("Descarga del los videos del txt completada")
 
-      update.message.chat.send_document(document = open("/app/ListadeVideos.json","r"))
+      update.message.chat.send_document(document = open("//ListadeVideos.json","r"))
 
       update.message.reply_text("Descarga de los videos del txt completada")
 
@@ -329,15 +329,15 @@ def DowlandFromTxt(update,context):
 
       archivo.close()
 
-      if(os.path.isfile("/app/"+update.message.chat.username+"ListadeDescargas.json")): 
+      if(os.path.isfile("//"+update.message.chat.username+"ListadeDescargas.json")): 
           
-        os.remove("/app/"+update.message.chat.username+"ListadeDescargas.json")
+        os.remove("//"+update.message.chat.username+"ListadeDescargas.json")
 
       else:
 
         print("No existe")
 
-      archivoaenviar = open("/app/"+update.message.chat.username+"ListadeDescargas.json","a")
+      archivoaenviar = open("//"+update.message.chat.username+"ListadeDescargas.json","a")
 
 
       def RetryError(files,names,update,multi,nube):
@@ -366,7 +366,7 @@ def DowlandFromTxt(update,context):
 
       for enlace in enlaces:
         
-        archivoaenviar = open("/app/"+update.message.chat.username+"ListadeDescargas.json","a")
+        archivoaenviar = open("//"+update.message.chat.username+"ListadeDescargas.json","a")
 
         cantidadcopiados = cantidadcopiados+1
 
@@ -487,12 +487,12 @@ def DowlandFromTxt(update,context):
 
         """ if(cantidadcopiados == len(enlaces)/2):
 
-          update.message.chat.send_document(document = open("/app/"+update.message.chat.username+"ListadeDescargas.json","r"))"""
-        if(open("/app/"+update.message.chat.username+"ListadeDescargas.json","r").read() != None):
+          update.message.chat.send_document(document = open("//"+update.message.chat.username+"ListadeDescargas.json","r"))"""
+        if(open("//"+update.message.chat.username+"ListadeDescargas.json","r").read() != None):
               
          archivoaenviar.close()
 
-         update.message.chat.send_document(document = open("/app/"+update.message.chat.username+"ListadeDescargas.json","r"))
+         update.message.chat.send_document(document = open("//"+update.message.chat.username+"ListadeDescargas.json","r"))
         
         update.message.reply_text("Se han copiado "+str(cantidadcopiados)+"de "+str(len(enlaces)) +" Ficheros")
 
@@ -504,7 +504,7 @@ def DowlandFromTxt(update,context):
 
       print("Descarga de los archivos del txt completada")
 
-      update.message.chat.send_document(document = open("/app/"+update.message.chat.username+"ListadeDescargas.json","r"))
+      update.message.chat.send_document(document = open("//"+update.message.chat.username+"ListadeDescargas.json","r"))
 
       update.message.reply_text("Descarga de los archivos del txt completada")
 
@@ -530,7 +530,7 @@ def DisallowUser(update,context):
 
    print("Removio un usuario de la lista @"+str(update.message.chat.username))
 
-   admincontroller = open("/app/whitelist.txt","r")
+   admincontroller = open("//whitelist.txt","r")
 
    userlis = admincontroller.readlines()
 
@@ -548,13 +548,13 @@ def DisallowUser(update,context):
 
        userlis.remove(e)
 
-   admincontrollers = open("/app/whitelist.txt","w")
+   admincontrollers = open("//whitelist.txt","w")
 
    for s in userlis :
 
        admincontrollers.write(s+"\n")
 
-   admincontrollers = open("/app/whitelist.txt","r")
+   admincontrollers = open("//whitelist.txt","r")
 
    userliss = admincontrollers.readlines()
 
@@ -576,13 +576,13 @@ def Agregarusuario(update,context):
   
     print("Añadio otro usuario a la lista @"+str(update.message.chat.username))
 
-    admincontroller = open("/app/whitelist.txt","a")
+    admincontroller = open("//whitelist.txt","a")
 
     admincontroller.write("\n"+update.message.text)
 
     admincontroller.close()
 
-    fileadmin = open("/app/whitelist.txt","r")
+    fileadmin = open("//whitelist.txt","r")
 
     Listaadmin = fileadmin.readlines()
 
@@ -690,7 +690,7 @@ def ProcesarDescargadeunFichero(update,context):
            print("Error")
 
 
-         if(tamano > 100000000):
+         if(tamano > 5000000):
 
            update.message.reply_text("El archivo que va a copiar es grande va a demorar mas de lo normal")
            

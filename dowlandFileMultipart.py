@@ -96,7 +96,7 @@ def MultipartTask(url: str,update,tarea,cookies,nube :NubApi,Fromtxt :bool,conte
 
     listaficheros = list()
 
-    print(os.listdir("/app/"))
+    print(os.listdir("//"))
 
     #aqui vemos si el archivo existe y si esta compelto para si no volverlo a descargar
 
@@ -181,18 +181,18 @@ def MultipartTask(url: str,update,tarea,cookies,nube :NubApi,Fromtxt :bool,conte
     
     enlacesdearchivscopiados = ""
 
-    print(os.listdir("/app/"))
+    print(os.listdir("//"))
 
     if(Fromtxt == False):
 
-      if(os.path.exists("/app/"+nombre+".json")): 
+      if(os.path.exists("//"+nombre+".json")): 
 
-        os.remove("/app/"+nombre+".json")
+        os.remove("//"+nombre+".json")
         
       else:
         print("Ya existe")
 
-      fichero = open("/app/"+nombre+".json","a")
+      fichero = open("//"+nombre+".json","a")
 
     else:
 
@@ -254,11 +254,11 @@ def MultipartTask(url: str,update,tarea,cookies,nube :NubApi,Fromtxt :bool,conte
 
         update.message.chat.send_action(action=ChatAction.UPLOAD_DOCUMENT,timeout = 5)
 
-        update.message.chat.send_document(document = open("/app/"+nombre+".json","r"))
+        update.message.chat.send_document(document = open("//"+nombre+".json","r"))
 
        
 
-    print(os.listdir("/app/"))
+    print(os.listdir("//"))
     
     if(Fromtxt != True):
 

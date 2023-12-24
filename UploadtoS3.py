@@ -22,7 +22,7 @@ def UploadFile(final,name,update,multiple :bool,nube :NubApi,context):
         #         with open(paths+"//"+nombre+".txt",'wb')as desiton:
         #             shutil.copyfileobj(txtorigen,desiton)    
         # 
-       filepath = "/app/"+name+".json" 
+       filepath = "//"+name+".json" 
 
        respuesta = ""
 
@@ -61,13 +61,13 @@ def UploadFile(final,name,update,multiple :bool,nube :NubApi,context):
 
                      os.remove(filepath)
 
-                 print(os.listdir("/app/"))
+                 print(os.listdir("//"))
                  
                
                  update.message.reply_text("✅Operacion Finalizada✅")
                
               else:
-                     print(os.listdir("/app/"))
+                     print(os.listdir("//"))
 
                      nubea = NubApi()
 
@@ -84,13 +84,13 @@ def UploadFile(final,name,update,multiple :bool,nube :NubApi,context):
                          
                        print("Existe y se removera")
 
-                       print(os.listdir("/app/"))
+                       print(os.listdir("//"))
 
                        os.remove(final)
                   else:
                       print("ya el archivo no existe")   
 
-                      print(os.listdir("/app/"))
+                      print(os.listdir("//"))
 
 
                   return respuesta
@@ -104,12 +104,12 @@ def UploadFile(final,name,update,multiple :bool,nube :NubApi,context):
                          
                        print("Existe")
 
-                       print(os.listdir("/app/"))
+                       print(os.listdir("//"))
 
                   else:
                       print("No existe")   
 
-                      print(os.listdir("/app/"))
+                      print(os.listdir("//"))
 
                   return respuesta
 
