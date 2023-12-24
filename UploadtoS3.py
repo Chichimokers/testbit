@@ -22,7 +22,7 @@ def UploadFile(final,name,update,multiple :bool,nube :NubApi,context):
         #         with open(paths+"//"+nombre+".txt",'wb')as desiton:
         #             shutil.copyfileobj(txtorigen,desiton)    
         # 
-       filepath = "//"+name+".json" 
+       filepath = name+".json" 
 
        respuesta = ""
 
@@ -48,7 +48,7 @@ def UploadFile(final,name,update,multiple :bool,nube :NubApi,context):
  
                  print("Se a enviado " + filepath)
 
-                 update.message.chat.send_document(document = open(filepath,"r"))
+                 update.message.chat.send_document(document = open(filepath,"rb"))
 
                  #context.bot.send_message(chat_id='-647544571',text=)
                  

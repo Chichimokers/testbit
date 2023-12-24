@@ -638,9 +638,14 @@ class NubApi():
              if(os.path.exists(pathfile)):
 
                  print("Existe")
+                 try:
 
-                 os.remove(pathfile)
-            
+                  os.remove(pathfile)
+                 except:
+                    print("de pinga")
+
+                
+                
 
              else:
 

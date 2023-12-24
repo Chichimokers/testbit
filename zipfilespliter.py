@@ -23,7 +23,7 @@ def SpliaFileInZip(path):
        nombrefinal = tempdir + "//"+finalname
 
 
-       with multivolumefile.open(str(nombrefinal+'.7z'), mode='wb', volume=50000000) as target_archive:
+       with multivolumefile.open(str(nombrefinal+'.7z'), mode='wb', volume=5000000) as target_archive:
 
           with py7zr.SevenZipFile(target_archive, 'w') as archive:
 

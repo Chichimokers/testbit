@@ -76,7 +76,7 @@ def MultipartTask(url: str,update,tarea:StoppableThread,cookies):
             
     file = open(nombredelaparte,"wb")
 
-    sizeparts = 50000000
+    sizeparts = 5000000
 
     Listadearchivos = list()
 
